@@ -8,5 +8,15 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require("daisyui")],
+  daisyui: {
+    styled: true,
+    themes: ["cmyk", "halloween"],
+    base: true,
+    utils: true,
+    logs: true,
+    rtl: false,
+    prefix: "",
+    darkTheme: "halloween",
+  },
 };
