@@ -1,10 +1,10 @@
 interface Props {
   title?: string;
 }
-export default function CustomHead({ title = "Home — Eric & TECH" }: Props) {
+export default function CustomHead({ title = "Home" }: Props) {
   return (
     <>
-      <title>{title}</title>
+      <title>{`${title} | Eric 'N' Tech`}</title>
       <meta content="width=device-width, initial-scale=1" name="viewport" />
       <meta
         name="description"

@@ -5,7 +5,7 @@ import LogoNormal from "./icons/logo/black/LogoNormal";
 export default function Navbar() {
   return (
     <div className="h-16 navbar ">
-      {/* Mobile: Drawer */}
+      {/* Logo & Mobile: Drawer */}
       <div className="navbar-start">
         <div className="dropdown">
           {/* Drawer Icon */}
@@ -35,13 +35,13 @@ export default function Navbar() {
               </a>
               <ul className="p-2">
                 <li>
+                  <a>All</a>
+                </li>
+                <li>
                   <a>Featured</a>
                 </li>
                 <li>
                   <a>Recent</a>
-                </li>
-                <li>
-                  <a>All</a>
                 </li>
               </ul>
             </li>
@@ -52,9 +52,9 @@ export default function Navbar() {
         </div>
 
         {/* Logo */}
-        <div className="flex items-center justify-center text-xl font-semibold normal-case">
+        <button className="flex items-center justify-center p-0 font-semibold normal-case btn btn-ghost h-fit">
           <LogoNormal width={200} height={52} />
-        </div>
+        </button>
       </div>
 
       {/* Desktop: Navbar Menu */}
@@ -78,13 +78,13 @@ export default function Navbar() {
             </a>
             <ul className="p-2 border w-52 bg-base-100 border-base-200">
               <li>
+                <a>All</a>
+              </li>
+              <li>
                 <a>Featured</a>
               </li>
               <li>
                 <a>Recent</a>
-              </li>
-              <li>
-                <a>All</a>
               </li>
             </ul>
           </li>
@@ -96,7 +96,7 @@ export default function Navbar() {
 
       {/* Navbar Buttons */}
       <div className="navbar-end">
-        <a className="btn btn-outline btn-info">Get Notified</a>
+        <a className="p-2 btn btn-outline btn-info">Get Notified</a>
       </div>
     </div>
   );
