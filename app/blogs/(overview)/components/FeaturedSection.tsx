@@ -3,8 +3,7 @@ const text =
 
 export default function FeaturedSection() {
   return (
-    <div className="overflow-hidden border h-96 card border-base-200 rounded-2xl">
-      {/* image-full */}
+    <div className="overflow-hidden transition border cursor-pointer h-96 card border-base-200 rounded-2xl hover:shadow">
       {/* <Image
         src="/bg-temp-2.png"
         alt="Menu"

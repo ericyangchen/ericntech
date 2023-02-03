@@ -1,6 +1,7 @@
-import BlogCard from "../../components/BlogCard";
+import BlogCard from "./BlogCard";
+import { compareDesc } from "date-fns";
 
-const blogList = [
+const fakeBlogList = [
   {
     title: "How I build this blog",
     description: "A overlook on how this site is built",
@@ -58,7 +59,12 @@ const blogList = [
   },
 ];
 
-export default function ListSection() {
+export async function getBlogList() {
+  return fakeBlogList;
+}
+
+export default async function ListSection() {
+  const blogList = await getBlogList();
   return (
     <div className="p-4 pt-2 overflow-hidden border card border-base-200 rounded-2xl">
       <div className="flex sm:max-w-xs tabs">
