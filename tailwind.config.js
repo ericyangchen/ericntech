@@ -4,8 +4,44 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
+
+    /** for TailwindCSS in MDX files */
+    "./mdxComponents/**/*.{js,ts,jsx,tsx}", // JSX components for MDX files
+    "./content/**/*.{md,mdx}", // MDX files
   ],
-  plugins: [require("daisyui"), require("@tailwindcss/line-clamp")],
+  theme: {
+    extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            color: "#333",
+            h1: {
+              fontSize: "1.875rem",
+            },
+            p: {
+              marginTop: 0,
+            },
+          },
+        },
+        lg: {
+          css: {
+            color: "#333",
+            h1: {
+              fontSize: "2rem",
+            },
+            p: {
+              marginTop: 0,
+            },
+          },
+        },
+      },
+    },
+  },
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/line-clamp"),
+    require("daisyui"),
+  ],
   daisyui: {
     styled: true,
     themes: ["cmyk", "luxury"],
@@ -14,6 +50,6 @@ module.exports = {
     logs: true,
     rtl: false,
     prefix: "",
-    darkTheme: "luxury",
+    // darkTheme: "luxury",
   },
 };

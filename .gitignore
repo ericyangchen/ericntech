@@ -36,3 +36,6 @@ yarn-error.log*
 next-env.d.ts
 
 .vscode
+
+# contentlayer generated data for MDX posts
+.contentlayer

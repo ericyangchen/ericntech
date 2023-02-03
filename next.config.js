@@ -3,6 +3,9 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-}
+};
 
-module.exports = nextConfig
+/** contentlayer plugin */
+const { withContentlayer } = require("next-contentlayer");
+
+module.exports = withContentlayer(nextConfig);

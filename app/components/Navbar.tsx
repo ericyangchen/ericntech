@@ -1,6 +1,7 @@
 "use client";
 import MenuIcon from "./icons/common/MenuIcon";
 import LogoNormal from "./icons/logo/black/LogoNormal";
+import LogoHollowNofill from "./icons/logo/white/LogoHollowNofill";
 
 export default function Navbar() {
   return (
@@ -54,6 +55,7 @@ export default function Navbar() {
         {/* Logo */}
         <button className="flex items-center justify-center p-0 font-semibold normal-case btn btn-ghost h-fit">
           <LogoNormal width={200} height={52} />
+          {/* <LogoHollowNofill width={200} height={52} /> */}
         </button>
       </div>
 
