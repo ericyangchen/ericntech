@@ -20,7 +20,7 @@ const tagList = [
 
 export default function TagSidebar() {
   return (
-    <div className="h-[300px] w-60 bg-base-100 p-4 rounded-2xl flex flex-col border border-base-200">
+    <div className="flex flex-col p-4 border w-60 bg-base-100 rounded-2xl border-base-200">
       <div className="gap-1 pb-3 card-title">
         <TagIcon width={28} height={28} />
         Tags
