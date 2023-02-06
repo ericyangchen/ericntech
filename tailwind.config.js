@@ -34,10 +34,12 @@ module.exports = {
   daisyui: {
     styled: true,
     themes: [
+      // "cmyk",
       {
         luxuryDark: {
           ...require("daisyui/src/colors/themes")["[data-theme=luxury]"],
           "base-content": "#f7f8f8",
+          "info-content": "#d0d6e0",
         },
       },
     ],

@@ -52,7 +52,7 @@ const Info = ({
   views: string;
 }) => {
   return (
-    <div className="flex text-sm text-gray-500 divide-x divide-gray-700">
+    <div className="flex text-[13px] leading-[15px] text-gray-500 divide-x divide-gray-700">
       <div className="pr-3">{date}</div>
       <div className="px-3">{readingTime}</div>
       <div className="pl-3">{views} views</div>
@@ -60,7 +60,7 @@ const Info = ({
   );
 };
 const Title = ({ title }: { title: string }) => {
-  return <h1 className="mt-4 mb-8">{title}</h1>;
+  return <h1 className="mt-4 mb-8 text-4xl ">{title}</h1>;
 };
 const Avatar = () => {
   return (
