@@ -1,6 +1,12 @@
 import { defineDocumentType, makeSource } from "contentlayer/source-files";
 import readingTime from "reading-time";
 
+// @code-hike/mdx
+import { remarkCodeHike } from "@code-hike/mdx";
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+const theme = require("shiki/themes/slack-dark.json");
+
 export const Post = defineDocumentType(() => ({
   name: "Post",
   filePathPattern: `**/*.mdx`,
@@ -20,6 +26,10 @@ export const Post = defineDocumentType(() => ({
       type: "string",
       description: "The description of the post",
       required: true,
+    },
+    thumbnail: {
+      type: "string",
+      description: "The thumbnail image",
     },
     tags: {
       type: "list",
@@ -42,4 +52,15 @@ export const Post = defineDocumentType(() => ({
 export default makeSource({
   contentDirPath: "content/posts",
   documentTypes: [Post],
+  mdx: {
+    remarkPlugins: [
+      [
+        remarkCodeHike,
+        {
+          showCopyButton: true,
+          theme,
+        },
+      ],
+    ],
+  },
 });

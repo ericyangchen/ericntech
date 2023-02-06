@@ -8,29 +8,18 @@ module.exports = {
     /** for TailwindCSS in MDX files */
     "./mdxComponents/**/*.{js,ts,jsx,tsx}", // JSX components for MDX files
     "./content/**/*.{md,mdx}", // MDX files
+    "./.contentlayer/**/*",
   ],
   theme: {
     extend: {
       typography: {
         DEFAULT: {
           css: {
-            color: "#333",
             h1: {
               fontSize: "1.875rem",
             },
-            p: {
-              marginTop: 0,
-            },
-          },
-        },
-        lg: {
-          css: {
-            color: "#333",
-            h1: {
-              fontSize: "2rem",
-            },
-            p: {
-              marginTop: 0,
+            a: {
+              textDecoration: "none",
             },
           },
         },
@@ -44,12 +33,18 @@ module.exports = {
   ],
   daisyui: {
     styled: true,
-    themes: ["cmyk", "luxury"],
+    themes: [
+      {
+        luxuryDark: {
+          ...require("daisyui/src/colors/themes")["[data-theme=luxury]"],
+          "base-content": "#f7f8f8",
+        },
+      },
+    ],
     base: true,
     utils: true,
     logs: true,
     rtl: false,
     prefix: "",
-    // darkTheme: "luxury",
   },
 };
