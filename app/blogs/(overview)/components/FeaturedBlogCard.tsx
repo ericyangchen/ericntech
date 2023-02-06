@@ -12,7 +12,7 @@ interface Props {
   like_count?: number;
   comment_count?: number;
 }
-export default function BlogCard({
+export default function FeaturedBlogCard({
   title,
   description = "",
   date,
