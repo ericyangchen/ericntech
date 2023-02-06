@@ -1,6 +1,7 @@
 import MDXImage from "@/mdxComponents/components/Image";
 import { allPosts, type Post } from "contentlayer/generated";
 import { notFound } from "next/navigation";
+import GoBackButton from "./components/GoBackButton";
 import PostContent from "./components/PostContent";
 import PostHeader from "./components/PostHeader";
 import PostLikeAndComment from "./components/PostLikeAndComment";
@@ -34,6 +35,7 @@ export default async function BlogContentPage({ params }: Props) {
 
   return (
     <div className="max-w-3xl p-2 mx-auto prose lg:mr-0">
+      <GoBackButton />
       <PostHeader
         title={post.title}
         date={post.date}
