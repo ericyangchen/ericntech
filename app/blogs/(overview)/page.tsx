@@ -5,6 +5,7 @@ export default function BlogOverviewPage() {
   return (
     <div className="flex flex-col gap-2 bg-base-100">
       <FeaturedSection />
+      {/* @ts-expect-error Server Component */}
       <ListSection />
     </div>
   );

@@ -9,10 +9,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head />
-      <body className="h-screen">
+      <body className="w-screen h-screen">
         {/* Navbar */}
         <div className="fixed top-0 z-50 w-full border-b border-base-200 backdrop-blur">
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto lg:max-w-7xl">
             <Navbar />
           </div>
         </div>
