@@ -1,6 +1,6 @@
 import CommentIcon from "@/app/components/icons/common/CommentIcon";
 import HeartIcon from "@/app/components/icons/common/HeartIcon";
-import { formatNumber } from "../../utils/formatNumber";
+import { formatNumber } from "../../../utils/formatNumber";
 import MDXImage from "@/mdxComponents/components/Image";
 import Link from "next/link";
 

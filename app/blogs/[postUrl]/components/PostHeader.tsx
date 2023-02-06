@@ -4,7 +4,7 @@ import { IsoDateTimeString } from "contentlayer/core";
 import { format, parseISO } from "date-fns";
 import Image from "next/image";
 import ProfileAvatar from "@/public/profileAvatar.png";
-import { formatNumber } from "../../utils/formatNumber";
+import { formatNumber } from "../../../utils/formatNumber";
 
 interface Props {
   title: string;
