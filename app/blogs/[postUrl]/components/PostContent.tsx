@@ -1,3 +1,7 @@
+"use client";
+
+import "@code-hike/mdx/dist/index.css";
+import "./postContent.css";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { getAllMdxComponents } from "../../../../mdxComponents";
 

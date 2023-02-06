@@ -1,30 +1,48 @@
+import MDXImage from "@/mdxComponents/components/Image";
 import { allPosts, type Post } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 import PostContent from "./components/PostContent";
-import PostTitleInfo from "./components/PostTitleInfo";
+import PostHeader from "./components/PostHeader";
 import PostLikeAndComment from "./components/PostLikeAndComment";
+
+interface PostInfo extends Post {
+  viewCount?: number;
+  likeCount?: number;
+  commentCount?: number;
+}
+async function getPostByURL(postUrl: string): Promise<PostInfo | undefined> {
+  const post = allPosts.find((post) => post.url === postUrl);
+
+  if (!post) return undefined;
+
+  // TODO: fetch post infos from firebase
+
+  return post;
+}
 
 interface Props {
   params: {
     postUrl: string;
   };
 }
-
-function getPostByURL(postUrl: string): Post | undefined {
-  const post = allPosts.find((post) => post.url === postUrl);
-  return post;
-}
-
-export default function BlogContentPage({ params }: Props) {
-  const post = getPostByURL(params.postUrl);
+export default async function BlogContentPage({ params }: Props) {
+  const post = await getPostByURL(params.postUrl);
 
   if (!post) {
     notFound();
   }
 
   return (
-    <div className="max-w-3xl p-2 mx-auto prose md:prose-lg prose-zinc">
-      <PostTitleInfo title={post.title} date={post.date} />
+    <div className="max-w-3xl p-2 mx-auto prose lg:mr-0">
+      <PostHeader
+        title={post.title}
+        date={post.date}
+        readingTime={post.readingTime.text}
+        viewCount={post?.viewCount}
+        likeCount={post?.likeCount}
+        commentCount={post?.commentCount}
+      />
+      {post?.thumbnail && <MDXImage src={post.thumbnail} priority />}
       <PostContent code={post.body.code} />
       <PostLikeAndComment />
     </div>
