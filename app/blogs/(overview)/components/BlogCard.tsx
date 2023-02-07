@@ -25,7 +25,7 @@ export default function BlogCard({
   return (
     <div className="flex flex-col rounded-lg cursor-pointer bg-base-100">
       <Link href="/blogs/test">
-        <MDXImage src={thumbnail} className="my-0 aspect-video" />
+        <MDXImage src={thumbnail} className="m-0 rounded-lg aspect-video" />
 
         <div className="flex flex-col gap-2 mb-8">
           <h2 className="text-2xl font-extrabold card-title">{title}</h2>

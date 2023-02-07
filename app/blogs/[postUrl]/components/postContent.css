@@ -5,9 +5,11 @@
   display: block;
 }
 
-.ch-codegroup {
+.ch-codegroup,
+.ch-codeblock {
   max-width: calc(100vw - 32px);
 }
-.lg:ch-codegroup {
+.lg:ch-codegroup,
+.lg:ch-codeblock {
   max-width: none;
 }

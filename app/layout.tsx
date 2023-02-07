@@ -18,7 +18,7 @@ export default function RootLayout({
         </div>
 
         {/* children */}
-        <div className="pb-16">{children}</div>
+        <div className="h-full pb-16">{children}</div>
       </body>
     </html>
   );

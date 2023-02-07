@@ -6,6 +6,7 @@ export default function CustomHead({ title = "Home" }: Props) {
     <>
       <title>{`${title} | Eric 'N' Tech`}</title>
       <meta content="width=device-width, initial-scale=1" name="viewport" />
+      <meta name="theme-color" content="#09090b" />
       <meta
         name="description"
         content="Eric'n'TECH is created by Chen, Yang Jung aka Eric Chen in his not-so-free time."
