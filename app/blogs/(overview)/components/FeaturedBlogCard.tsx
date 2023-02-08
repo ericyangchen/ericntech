@@ -1,6 +1,6 @@
 import CommentIcon from "@/app/components/icons/common/CommentIcon";
 import HeartIcon from "@/app/components/icons/common/HeartIcon";
-import { formatNumber } from "../../../utils/formatNumber";
+import { formatNumber } from "../../../utils/format";
 import MDXImage from "@/mdxComponents/components/Image";
 
 interface Props {

@@ -1,10 +1,9 @@
 import CommentIcon from "@/app/components/icons/common/CommentIcon";
 import HeartIcon from "@/app/components/icons/common/HeartIcon";
-import { IsoDateTimeString } from "contentlayer/core";
-import { format, parseISO } from "date-fns";
+import type { IsoDateTimeString } from "contentlayer/core";
 import Image from "next/image";
 import ProfileAvatar from "@/public/profileAvatar.png";
-import { formatNumber } from "../../../utils/formatNumber";
+import { formatDate, formatNumber } from "../../../utils/format";
 
 interface Props {
   title: string;
@@ -26,7 +25,7 @@ export default function PostHeader({
   return (
     <div className="flex flex-col gap-2 py-4 mb-8">
       <Info
-        date={format(parseISO(date), "LLL d, yyyy")}
+        date={formatDate(date)}
         readingTime={readingTime || "X min read"}
         views={formatNumber(viewCount)}
       />
