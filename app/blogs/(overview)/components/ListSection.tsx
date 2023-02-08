@@ -1,85 +1,98 @@
+"use client";
+
+import Image404 from "@/public/404-2.png";
+
+import ListTab from "./ListTab";
+import { PostInfo } from "@/store/types";
+import { AnimatePresence, motion } from "framer-motion";
 import BlogCard from "./BlogCard";
-import { compareDesc } from "date-fns";
+import { useGlobalStore } from "@/store/store";
+import { getPostListOfType } from "@/app/utils/getPostListOfType";
+import Image from "next/image";
 
-const fakeBlogList = [
-  {
-    title: "How I build this blog",
-    description:
-      "The systematic thinking in our industry is that settings are the result of design failure. As designers, our goal is to create product experiences that don’t require any adjustment by the user. So offering customization options is often seen as a failure to make firm product decisions. I think there is a misunderstanding about what settings really are.",
-    date: "JAN 15",
-    thumbnail: "macbook.jpg",
-    like_count: 10,
-    comment_count: 5,
-  },
-  {
-    title: "Custom",
-    description:
-      "A overlook on how this site is built 2 A overlook on how this site is built 2A overlook on how this site is built 2A overlook on how this site is built 2A overlook on how this site is built 2A overlook on how this site is built 2A overlook on how this site is built 2A overlook on how this site is built 2A overlook on how this site is built 2A overlook on how this site is built 2A overlook on how this site is built 2A overlook on how this site is built 2A overlook on how this site is built 2A overlook on how this site is built 2",
-    date: "MAR 30",
-    thumbnail: "mdx-thumbnail.png",
-    like_count: 1,
-    comment_count: 5,
-  },
-  {
-    title: "How I build this blog",
-    description: "A overlook on how this site is built",
-    date: "JAN 15",
-    thumbnail: "test.jpg",
-    like_count: 10,
-    comment_count: 5,
-  },
-  {
-    title: "How I build this blog",
-    description: "A overlook on how this site is built",
-    date: "JAN 15",
-    thumbnail: "test.jpg",
-    like_count: 10,
-    comment_count: 5,
-  },
-  {
-    title: "How I build this blog",
-    description: "A overlook on how this site is built",
-    date: "JAN 15",
-    thumbnail: "test.jpg",
-    like_count: 10,
-    comment_count: 5,
-  },
-];
-
-async function getBlogList() {
-  return fakeBlogList;
+interface Props {
+  blogList: PostInfo[];
 }
 
-const Tabs = () => {
+export default function ListSection({ blogList }: Props) {
+  const activeTab = useGlobalStore((state) => state.activeTab);
+  const filteredBlogList = getPostListOfType(blogList, activeTab);
+
+  const postInfo = useGlobalStore((state) => state.postInfo);
+
   return (
-    <div className="flex sm:max-w-xs tabs tabs-boxed">
-      <a className="flex-1 tab tab-active">All</a>
-      <a className="flex-1 tab ">Featured</a>
-      <a className="flex-1 tab ">Recent</a>
+    <div className="p-4 pt-2 card ">
+      <ListTab />
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeTab}
+          initial={{ y: 10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -10, opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          {filteredBlogList.length ? (
+            <div className="grid grid-cols-1 mt-4 gap-x-12 gap-y-16 md:grid-cols-2">
+              {filteredBlogList?.map((postInfo) => {
+                return (
+                  <BlogCard
+                    key={postInfo.id}
+                    url={postInfo.url}
+                    title={postInfo.title}
+                    description={postInfo.description}
+                    thumbnail={postInfo.thumbnail}
+                    date={postInfo.date}
+                    viewCount={postInfo.viewCount}
+                    likeCount={postInfo.likeCount}
+                    commentCount={postInfo.commentCount}
+                    isFeatured={postInfo.isFeatured}
+                  />
+                );
+              })}
+            </div>
+          ) : (
+            <EmptyList />
+          )}
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+}
+
+const EmptyList = () => {
+  return (
+    <div className="flex flex-col items-center justify-center w-full h-full pt-[10%] gap-8 md:gap-12 lg:gap-16 ">
+      <motion.div
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{
+          ease: "easeOut",
+          duration: 1,
+          delay: 1,
+        }}
+      >
+        <h1 className="text-3xl font-bold">
+          {/* eslint-disable-next-line react/no-unescaped-entities */}
+          Sorry! There's no post in the current tab.
+        </h1>
+      </motion.div>
+
+      <motion.div
+        initial={{ rotate: 60, y: 10, opacity: 0 }}
+        animate={{ rotate: 0, y: 0, opacity: 1 }}
+        transition={{
+          duration: 1,
+          type: "spring",
+          damping: 8,
+          stiffness: 1000,
+        }}
+      >
+        <Image
+          className="border-4 sm:max-w-sm md:max-w-xl rounded-xl border-neutral-content"
+          src={Image404}
+          alt="404"
+        />
+      </motion.div>
     </div>
   );
 };
-
-export default async function ListSection() {
-  const blogList = await getBlogList();
-  return (
-    <div className="p-4 pt-2 card ">
-      <Tabs />
-      <div className="grid grid-cols-1 mt-4 gap-x-12 gap-y-16 md:grid-cols-2">
-        {blogList.map((blog, index) => {
-          return (
-            <BlogCard
-              key={index}
-              title={blog.title}
-              description={blog.description}
-              thumbnail={blog.thumbnail}
-              date={blog.date}
-              like_count={blog?.like_count}
-              comment_count={blog?.comment_count}
-            />
-          );
-        })}
-      </div>
-    </div>
-  );
-}
