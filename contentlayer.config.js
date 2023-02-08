@@ -30,6 +30,7 @@ export const Post = defineDocumentType(() => ({
     thumbnail: {
       type: "string",
       description: "The thumbnail image",
+      required: true,
     },
     tags: {
       type: "list",
