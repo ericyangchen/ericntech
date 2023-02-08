@@ -1,33 +1,50 @@
 import MDXImage from "@/mdxComponents/components/Image";
-import { allPosts, type Post } from "contentlayer/generated";
+import { PostInfo } from "@/store/types";
+import supabase from "@/supabase/supabase";
+import { allPosts, Post } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 import GoBackButton from "./components/GoBackButton";
 import PostContent from "./components/PostContent";
 import PostHeader from "./components/PostHeader";
 import PostLikeAndComment from "./components/PostLikeAndComment";
 
-interface PostInfo extends Post {
-  viewCount?: number;
-  likeCount?: number;
-  commentCount?: number;
-}
-async function getPostByURL(postUrl: string): Promise<PostInfo | undefined> {
-  const post = allPosts.find((post) => post.url === postUrl);
-
-  if (!post) return undefined;
-
-  // TODO: fetch post infos from firebase
-
-  return post;
-}
+type PostCombined = PostInfo &
+  Pick<Post, "readingTime" | "tags"> & { code: string };
 
 interface Props {
   params: {
     postUrl: string;
   };
 }
+
+async function getPostCombined(
+  postUrl: string
+): Promise<PostCombined | undefined> {
+  // post from contentlayer
+  const postContent = allPosts.find((post) => post.url === postUrl);
+  if (!postContent) return undefined;
+
+  const { data: postInfo, error } = await supabase
+    .from("post")
+    .select()
+    .eq("url", postUrl)
+    .single();
+  if (error) {
+    notFound();
+  }
+
+  const postCombined = {
+    readingTime: postContent.readingTime,
+    tags: postContent.tags,
+    code: postContent.body.code,
+    ...postInfo,
+  };
+
+  return postCombined;
+}
+
 export default async function BlogContentPage({ params }: Props) {
-  const post = await getPostByURL(params.postUrl);
+  const post = await getPostCombined(params.postUrl);
 
   if (!post) {
     notFound();
@@ -45,7 +62,7 @@ export default async function BlogContentPage({ params }: Props) {
         commentCount={post?.commentCount}
       />
       {post?.thumbnail && <MDXImage src={post.thumbnail} priority />}
-      <PostContent code={post.body.code} />
+      <PostContent code={post.code} />
       <PostLikeAndComment />
     </div>
   );

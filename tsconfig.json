@@ -32,7 +32,8 @@
     ".next/types/**/*.ts",
     ".contentlayer/generated",
     "contentlayer.config.js",
-    "firebase/index.js"
+    "store/**/*.ts",
+    "supabase/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "scripts"]
 }
