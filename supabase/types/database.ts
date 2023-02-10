@@ -31,7 +31,7 @@ export interface Database {
           likeCount?: number
           thumbnail: string
           title: string
-          url?: string
+          url: string
           viewCount?: number
         }
         Update: {
