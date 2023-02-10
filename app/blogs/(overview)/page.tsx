@@ -1,4 +1,4 @@
-import supabase from "@/supabase/supabase";
+import supabase from "@/supabase";
 import { notFound } from "next/navigation";
 // import FeaturedSection from "./components/FeaturedSection";
 import ListSection from "./components/ListSection";

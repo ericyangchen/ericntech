@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import "./HomePage.css";
 // import { Oswald } from "@next/font/google";
 // const FontOswald = Oswald({
@@ -6,5 +9,25 @@ import "./HomePage.css";
 // });
 
 export default function HomePage() {
-  return <div>Home Page</div>;
+  return (
+    <div className="flex items-center justify-center h-full text-2xl">
+      <motion.div initial={{ x: -500 }} animate={{ scale: 1 }}>
+        Home Page
+        <br />
+        Home Page
+        <br />
+        Home Page
+        <br />
+        Home Page
+        <br />
+        Home Page
+        <br />
+        Home Page
+        <br />
+        Home Page
+        <br />
+        <br />
+      </motion.div>
+    </div>
+  );
 }

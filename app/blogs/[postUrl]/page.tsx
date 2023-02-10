@@ -1,6 +1,6 @@
 import MDXImage from "@/mdxComponents/components/Image";
 import { PostInfo } from "@/store/types";
-import supabase from "@/supabase/supabase";
+import supabase from "@/supabase";
 import { allPosts, Post } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 import GoBackButton from "./components/GoBackButton";
