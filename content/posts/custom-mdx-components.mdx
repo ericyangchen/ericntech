@@ -1,0 +1,120 @@
+---
+title: "Custom MDX components"
+date: "2021-10-10"
+description: "This document describes the custom components that are used in my blog posts."
+thumbnail: "mdx-thumbnail.png"
+tags: ["Guide", "MDX", "TailwindCSS", "ReactJS"]
+---
+
+All of my blogs are written in MDX, and the benefit of MDX is that you can add React components into your normal markdown content.<br/>
+To make things fancier, here are some components I created to write my blog with.<br/>
+
+The entire source code is available on <Link href="https://github.com/ericyangchen/ericntech" target="_blank" rel="noreferrer noopenner">GitHub</Link>
+
+## Tree List
+
+<TreeContainer>
+  <Tree name="app" defaultOpen>
+    <Tree name="components">
+      <Tree name="common">
+        <Tree name="icons" />
+      </Tree>
+    </Tree>
+    <Tree name="(overview)" defaultOpen>
+      <Tree name="head.tsx" />
+      <Tree name="layout.tsx" />
+      <Tree name="page.tsx" />
+    </Tree>
+    <Tree name="blogs">
+      <Tree name="[PostId]">
+        <Tree name="layout.tsx" />
+        <Tree name="page.tsx" />
+      </Tree>
+      <Tree name="head.tsx" />
+      <Tree name="layout.tsx" />
+      <Tree name="page.tsx" />
+    </Tree>
+    <Tree name="head.tsx" />
+    <Tree name="layout.tsx" />
+    <Tree name="page.tsx" />
+  </Tree>
+</TreeContainer>
+
+## Links
+
+- **Link**
+
+  Check this link out: <Link href="https://ericntech.com/">https://ericntech.com</Link>!
+
+- **LinkWithIcon**
+
+  <div className="flex items-center">
+    Check this link out:
+    <LinkWithIcon href="https://ericntech.com/">
+      https://ericntech.com
+    </LinkWithIcon>
+  </div>
+
+  **Color Variants**:
+
+  - _`className`_ prop will be applied to outer div and SVG,
+
+  - _`iconClassName`_ prop will be applied to the SVG only.
+
+  Using _`text-pink-500`_ in _`className`_ prop style both text and SVG orange, <br/>
+  to style the SVG alone, use _`text-green-500`_ in _`iconClassName`_ prop. (also remember to
+  add the width and height properties to the SVG)
+
+<LinkWithIcon href="https://ericntech.com/" className="text-pink-500">
+  https://ericntech.com
+</LinkWithIcon>
+
+<CH.Code>
+  ```js focus=1
+  <LinkWithIcon href="/" className="text-pink-500">
+    {/* something */}
+  </LinkWithIcon>
+  ```
+</CH.Code>
+
+<LinkWithIcon
+  href="https://ericntech.com/"
+  className="text-pink-500"
+  iconClassName="text-green-500 w-4 h-4"
+>
+  https://ericntech.com
+</LinkWithIcon>
+
+<CH.Code>
+  ```js focus=2:3
+  <LinkWithIcon
+    className="text-pink-500"
+    iconClassName="text-green-500 w-4 h-4"
+  >
+    {/* something */}
+  </LinkWithIcon>
+  ```
+</CH.Code>
+
+## Image
+
+<div className="flex gap-2">
+  <Image className="border rounded-md" src="mdx-thumbnail.png" />
+  <Image className="border rounded-md" src="mdx-thumbnail.png" />
+</div>
+
+<div className="flex gap-2">
+  <Image className="border rounded-md" src="mdx-thumbnail.png" />
+  <Image className="border rounded-md" src="mdx-thumbnail.png" />
+  <Image className="border rounded-md" src="mdx-thumbnail.png" />
+</div>
+
+## Code
+
+<CH.Code>
+```js
+function hello() {
+  console.log("Hello World");
+}
+```
+</CH.Code>
