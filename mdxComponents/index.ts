@@ -1,11 +1,24 @@
-// JSX components used in MDX files
-import MyButton from "./MyButton";
-import TreeList from "./TreeList";
-import Image from "./Image";
+/** JSX components used in MDX files */
 
-const allComponents = { MyButton, TreeList, Image };
+// animated
+import { TreeContainer, Tree } from "./components/TreeList";
+
+// extend next/image
+import Image from "./components/Image";
+
+// extend next/link
+import Link from "./components/Link";
+import LinkWithIcon from "./components/LinkWithIcon";
 
 /** returns all components */
+const allComponents = {
+  TreeContainer,
+  Tree,
+  Image,
+  Link,
+  LinkWithIcon,
+};
+
 export const getAllMdxComponents = () => {
   return allComponents;
 };
