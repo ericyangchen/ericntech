@@ -1,6 +1,26 @@
+import Link from "next/link";
 import MenuIcon from "./icons/common/MenuIcon";
 // import LogoNormal from "./icons/logo/black/LogoNormal";
 import LogoHollowNofill from "./icons/logo/white/LogoHollowNofill";
+
+const menuList = [
+  {
+    name: "Home",
+    link: "/",
+  },
+  {
+    name: "Blogs",
+    link: "/blogs",
+  },
+  {
+    name: "Projects",
+    link: "/projects",
+  },
+  {
+    name: "Portfolio",
+    link: "/portfolio",
+  },
+];
 
 export default function Navbar() {
   return (
@@ -14,7 +34,7 @@ export default function Navbar() {
 
       {/* Navbar Buttons */}
       <div className="navbar-end">
-        <a className="p-2 btn btn-outline btn-info">Get Notified</a>
+        {/* <a className="p-2 btn btn-outline btn-info">Contact</a> */}
       </div>
     </div>
   );
@@ -43,37 +63,11 @@ const Drawer = () => {
         tabIndex={0}
         className="p-2 mt-3 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-60"
       >
-        <li>
-          <a>Home</a>
-        </li>
-        <li tabIndex={0}>
-          <a className="justify-between">
-            Blogs
-            <svg
-              className="fill-current"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-            >
-              <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
-            </svg>
-          </a>
-          <ul className="p-2">
-            <li>
-              <a>All</a>
-            </li>
-            <li>
-              <a>Featured</a>
-            </li>
-            <li>
-              <a>Recent</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a>Résumé</a>
-        </li>
+        {menuList.map(({ name, link }, index) => (
+          <li key={index}>
+            <Link href={link}>{name}</Link>
+          </li>
+        ))}
       </ul>
     </div>
   );
@@ -84,37 +78,11 @@ const NavbarMenu = () => {
   return (
     <div className="hidden navbar-center lg:flex">
       <ul className="px-1 menu menu-horizontal">
-        <li>
-          <a>Home</a>
-        </li>
-        <li tabIndex={0}>
-          <a className="gap-0">
-            Blogs
-            <svg
-              className="fill-current"
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-            >
-              <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
-            </svg>
-          </a>
-          <ul className="p-2 border w-52 bg-base-100 border-base-200">
-            <li>
-              <a>All</a>
-            </li>
-            <li>
-              <a>Featured</a>
-            </li>
-            <li>
-              <a>Recent</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a>Demo</a>
-        </li>
+        {menuList.map(({ name, link }, index) => (
+          <li key={index}>
+            <Link href={link}>{name}</Link>
+          </li>
+        ))}
       </ul>
     </div>
   );
