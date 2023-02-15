@@ -9,9 +9,6 @@ on:
 jobs:
   Deploy-Preview:
     runs-on: ubuntu-latest
-    environment:
-      name: development
-      url: ${{ steps.vercel_link.outputs.url }}
     steps:
       - uses: actions/checkout@v2
 
@@ -25,5 +22,4 @@ jobs:
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy Project Artifacts to Vercel
-        id: vercel_link
-        run: echo "url=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})" >> $GITHUB_OUTPUT
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
