@@ -1,3 +1,4 @@
+import { AnalyticsWrapper } from "./components/AnalyticsWrapper";
 import Navbar from "./components/Navbar";
 import "./globals.css";
 
@@ -16,9 +17,11 @@ export default function RootLayout({
             <Navbar />
           </div>
         </div>
-
         {/* children */}
         <div className="h-full pb-16">{children}</div>
+
+        {/* vercel analytics */}
+        <AnalyticsWrapper />
       </body>
     </html>
   );
