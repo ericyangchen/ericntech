@@ -1,17 +1,14 @@
-name: Preview Deployment (Dev)
+name: Production Preview Deployment
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 on:
-  push:
+  pull_request:
     branches:
-      - dev
+      - prod
 jobs:
   Deploy-Preview:
     runs-on: ubuntu-latest
-    environment:
-      name: development
-      url: ${{ steps.vercel_link.outputs.url }}
     steps:
       - uses: actions/checkout@v2
 
@@ -25,5 +22,4 @@ jobs:
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy Project Artifacts to Vercel
-        id: vercel_link
-        run: echo "url=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})" >> $GITHUB_OUTPUT
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
